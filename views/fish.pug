@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  - var result = [{"fish_name":"nemo","fish_size":5,"fish_type":"samll"},{"fish_name":"apolo","fish_size":50,"fish_type":"medium"},{"fish_name":"whale","fish_size":400,"fish_type":"large"}]
+  div.container-fluid
+     div.row
+        each item,index in result
+            div.col-sm-2(onclick=`buy(${index})`) Fish Name: #{item["fish_name"]}  <br>  Fish size: #{item["fish_size"]} <br> Fish type: #{item["fish_type"]} 
+  script.
+      function buy(index){
+         alert("you purchased item "+(index+1))
+      }
+  
