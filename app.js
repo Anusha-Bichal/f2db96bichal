@@ -4,11 +4,22 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config(); 
+const connectionString =  
+process.env.MONGO_CON 
+mongoose = require('mongoose'); 
+mongoose.connect(connectionString,  
+{useNewUrlParser: true, 
+useUnifiedTopology: true}); 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var fishRouter = require('./routes/fish');
 var gridbuildRouter = require('./routes/gridbuild');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
+var fish = require("./models/fish");
+
 
 var app = express();
 
@@ -27,7 +38,40 @@ app.use('/users', usersRouter);
 app.use('/fish', fishRouter);
 app.use('/gridbuild', gridbuildRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
+// We can seed the collection if needed on server start 
+async function recreateDB(){ 
+  // Delete everything 
+  await fish.deleteMany(); 
+ 
+  let instance1 = new 
+fish({fish_type:"nemo",  size:'small', 
+cost:25.4}); 
+  instance1.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("First object saved") 
+  }); 
+
+  let instance2 = new 
+  fish({fish_type:"apolo",  size:'medium', 
+  cost:25.4}); 
+    instance2.save( function(err,doc) { 
+        if(err) return console.error(err); 
+        console.log("Second object saved") 
+    }); 
+
+    let instance3 = new 
+    fish({fish_type:"whale",  size:'large', 
+    cost:25.4}); 
+      instance3.save( function(err,doc) { 
+          if(err) return console.error(err); 
+          console.log("Third object saved") 
+      }); 
+} 
+ 
+let reseed = true; 
+if (reseed) { recreateDB();}
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
