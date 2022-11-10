@@ -3,7 +3,36 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  - let items = results 
+  - let items = results
+  button.btn( class="btn-primary ml-1", onclick= `click(\"/Amazon/create\")` ) Create a new Item
+    table(class="table table-stripped table-bordered")
+        thead(style="background-color:brown;color:white") 
+            tr
+                td Item ID
+                td Item name
+                td Item size
+                td Item type 
+                td Update
+                td Details
+                td Delete
+        tbody
+            
+            each item in items
+                tr
+                    td #{item._id}
+                    td #{item.name}
+                    td #{item.size}
+                    td #{item.type}
+                    td 
+                      button.btn( class="btn-primary ml-1", onclick= `click(\"/fish/update/?id=${item._id}\")` ) Update
+                    td 
+                      button.btn( class="btn-primary ml-1", onclick= `click(\"/fish/detail/?id=${item._id}\")` ) Details
+                    td 
+                      button.btn( class="btn-primary ml-1", onclick= `click(\"/fish/delete/?id=${item._id}\")` ) Delete 
+                script. 
+                  function click(path){ 
+                    window.location.href=path 
+                  }  
   - var result = [{"fish_name":"nemo","fish_size":5,"fish_type":"small"},{"fish_name":"apolo","fish_size":50,"fish_type":"medium"},{"fish_name":"whale","fish_size":400,"fish_type":"large"}]
   div.container-fluid
      div.row
