@@ -8,7 +8,7 @@ var fish_controller = require('../controllers/fish');
 /// API ROUTE /// 
  
 // GET resources base. 
-router.get('/', api_controller.api); 
+router.get('/fishs', api_controller.api); 
  
 /// COSTUME ROUTES /// 
  

@@ -46,24 +46,24 @@ async function recreateDB(){
   await fish.deleteMany(); 
  
   let instance1 = new 
-fish({fish_type:"nemo",  size:'small', 
-cost:25.4}); 
+fish({fish_name:"nemo",  fish_type:'small', 
+fish_size:5}); 
   instance1.save( function(err,doc) { 
       if(err) return console.error(err); 
       console.log("First object saved") 
   }); 
 
   let instance2 = new 
-  fish({fish_type:"apolo",  size:'medium', 
-  cost:25.4}); 
+  fish({fish_name:"apolo",  fish_type:'medium', 
+  fish_size:50}); 
     instance2.save( function(err,doc) { 
         if(err) return console.error(err); 
         console.log("Second object saved") 
     }); 
 
     let instance3 = new 
-    fish({fish_type:"whale",  size:'large', 
-    cost:25.4}); 
+    fish({fish_name:"whale",  fish_type:'large', 
+    fish_size:400}); 
       instance3.save( function(err,doc) { 
           if(err) return console.error(err); 
           console.log("Third object saved") 
