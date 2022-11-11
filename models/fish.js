@@ -5,5 +5,4 @@ const fishSchema = mongoose.Schema({
  fish_size: Number
 }) 
  
-module.exports = mongoose.model("fish", 
-fishSchema) 
+module.exports = mongoose.model("fish", fishSchema) 

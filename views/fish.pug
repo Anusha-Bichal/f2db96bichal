@@ -4,7 +4,7 @@ block content
   h1= title
   p Welcome to #{title}
   - let items = results
-  button.btn( class="btn-primary ml-1", onclick= `click(\"/Amazon/create\")` ) Create a new Item
+  button.btn( class="btn-primary ml-1", onclick= `click(\"/fish/create\")` ) Create a new Item
     table(class="table table-stripped table-bordered")
         thead(style="background-color:brown;color:white") 
             tr
@@ -33,7 +33,7 @@ block content
                   function click(path){ 
                     window.location.href=path 
                   }  
-  - var result = [{"fish_name":"nemo","fish_size":5,"fish_type":"small"},{"fish_name":"apolo","fish_size":50,"fish_type":"medium"},{"fish_name":"whale","fish_size":400,"fish_type":"large"}]
+  //- - var result = [{"fish_name":"nemo","fish_size":5,"fish_type":"small"},{"fish_name":"apolo","fish_size":50,"fish_type":"medium"},{"fish_name":"whale","fish_size":400,"fish_type":"large"}]
   div.container-fluid
      div.row
         each item,index in result
