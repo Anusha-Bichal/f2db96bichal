@@ -1,0 +1,45 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  if (toShow == null) 
+    h2 No instance to Update  
+  else
+   - let fishid = toShow._id 
+   - let fish_type = toShow.fish_type 
+   - let fish_name = toShow.fish_name
+   - let fish_size = toShow.fish_size 
+   
+   div.row(class='mb-2') 
+     div.mr-1 ID is 
+     div #{fishid} 
+   - let actionid = "/resource/fishs/" + fishid 
+   form(id='fishForm', action= actionid, method="PUT") 
+     div.form-group 
+         label.fishAttr(for='fish_type') fish_type  
+         input#fish_type(type='text', name='fish_type', value= fish_type ) 
+     div.form-group 
+         label.fishAttr(for='fish_name') fish_name
+         input#fish_name(type='text', name='fish_name', value= fish_name ) 
+     div.form-group 
+         label.fishAttr(for='fish_size') fish_size 
+         input#fish_size(type='number', name='fish_size', value= fish_size)  
+     input(type="submit")  
+ 
+  script. 
+    document.forms['fishForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    });
