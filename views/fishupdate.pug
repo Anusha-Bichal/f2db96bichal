@@ -17,13 +17,13 @@ block content
    form(id='fishForm', action= actionid, method="PUT") 
      div.form-group 
          label.fishAttr(for='fish_name') fish_name
-         input#fish_name(type='text', name='fish_name', value= fish_name ) 
-     div.form-group 
-         label.fishAttr(for='fish_size') fish_size
-         input#fish_size(type='number', name='fish_size', value= fish_size ) 
+         input#fish_name(type='string', name='fish_name', value= fish_name ) 
      div.form-group 
          label.fishAttr(for='fish_type') fish_type
-         input#fish_type(type='text', name='fish_type', value= fish_type)  
+         input#fish_type(type='string', name='fish_type', value= fish_type ) 
+     div.form-group 
+         label.fishAttr(for='fish_size') fish_size
+         input#fish_size(type='number', name='fish_size', value= fish_size)  
      input(type="submit")  
  
   script. 

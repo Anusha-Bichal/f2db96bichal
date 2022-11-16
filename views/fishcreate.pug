@@ -6,13 +6,13 @@ block content
   form(id='fishForm', action="/resource/fish", method="POST", class='style') 
     div.form-group 
         label.fishAttr(for='fish_name') fish name 
-        input#fish_name(type='text', name='name') 
+        input#fish_name(type='string',name='name') 
+    div.form-group 
+        label.fishAttr(for='fish_type') fish type
+        input#fish_type(type='string', name='type') 
     div.form-group 
         label.fishAttr(for='fish_size') fish size
         input#fish_size(type='number', name='size') 
-    div.form-group 
-        label.fishAttr(for='fish_type') fish type 
-        input#fish_type(type='text', name='type') 
     input(type="submit") 
  
   script.
