@@ -10,8 +10,8 @@ block content
             tr
                 td Item ID
                 td Item name
-                td Item size
-                td Item type 
+                td Item type
+                td Item size 
                 td Update
                 td Detail
                 td Delete
@@ -21,8 +21,8 @@ block content
                 tr
                     td #{item._id}
                     td #{item.name}
-                    td #{item.size}
                     td #{item.type}
+                    td #{item.size}
                     td 
                       button.btn( class="btn-primary ml-1", onclick= `click(\"/fish/update/?id=${item._id}\")` ) Update
                     td 
@@ -36,8 +36,8 @@ block content
   //- - var result = [{"fish_name":"nemo","fish_size":5,"fish_type":"small"},{"fish_name":"apolo","fish_size":50,"fish_type":"medium"},{"fish_name":"whale","fish_size":400,"fish_type":"large"}]
   div.container-fluid
      div.row
-        each item,index in result
-            div.col-sm-2(onclick=`buy(${index})`) Fish Name: #{item["fish_name"]}  <br>  Fish size: #{item["fish_size"]} <br> Fish type: #{item["fish_type"]} 
+        each item,index in items
+            div.col-sm-2(onclick=`buy(${index})`) Fish Name: #{item["fish_name"]}  <br> Fish type: #{item["fish_type"]} <br> Fish size: #{item["fish_size"]}  
   script.
       function buy(index){
          alert("you purchased item "+(index+1))

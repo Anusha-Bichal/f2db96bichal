@@ -1,22 +1,23 @@
-extends layout 
- 
-block content 
-  h1= title 
- 
-  - let fishid = toShow._id 
-  - let fish_name = toShow.fish_name 
-  - let fish_type = toShow.fish_type
-  - let fish_size = toShow.fish_size
-  div 
-    div.row 
-      div(class='fishAttr mr-3') fish ID is: 
-      div #{fishid} 
-    div.row 
-      div(class='fishAttr mr-3') fish name is: 
-      div #{fish_name} 
-    div.row 
-      div(class='fishAttr mr-3') fish type is: 
-      div #{fish_type} 
-    div.row 
-      div(class='fishAttr mr-3') fish size is: 
-      div #{fish_size}
+extends layout
+block content
+  h1= title
+  if (toShow == null) 
+    h2 No instance to delete 
+  else    
+    - let fishid = toShow._id
+    - let fish_name = toShow.fish_name
+    - let fish_type = toShow.fish_type
+    - let fish_size = toShow.fish_size
+    div(class='fishok')
+      div.row
+        div(class='fishAttr mr-3') fish ID is:
+        div #{fishid}
+      div.row
+        div(class='fishAttr mr-3') fish name is:
+        div #{fish_name}
+      div.row
+        div(class='fishAttr mr-3') fish type is:
+        div #{fish_type}
+      div.row
+        div(class='fishAttr mr-3') fish size is:
+        div #{fish_size}

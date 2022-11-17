@@ -1,15 +1,15 @@
 extends layout 
  
 block content 
-  h1= title 
+  h1= title
  
   if (toShow == null) 
     h2 No instance to delete 
   else 
     - let fishid = toShow._id 
-    - let fish_name= toShow.fish_name
-    - let fish_type = toShow.fish_type
-    - let fish_size = toShow.fish_size
+    - let fish_name = toShow.fish_name
+    - let fish_type = toShow.fish_type 
+    - let fish_size = toShow.fish_size 
     - let actionid = "/resource/fish/" + fishid 
     script let actionid = "#{actionid}" 
     div 
@@ -20,10 +20,10 @@ block content
         div(class='fishAttr mr-3') fish name is: 
         div #{fish_name} 
       div.row 
-        div(class='fishAttr mr-3') fish type is: 
+        div(class='fishAttr mr-3') fish _type is: 
         div #{fish_type} 
       div.row 
-        div(class='fishAttr mr-3') fish size is: 
+        div(class='fishAttr mr-3') fish _size is: 
         div #{fish_size} 
  
     button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
@@ -32,14 +32,14 @@ block content
   script. 
     function cancel() { 
       // Go back to the home page for the fish collection 
-      window.location.href='/fish' 
+      window.location.href='/fishs' 
     } 
   script. 
     function deleteOnid() { 
       console.log("starting delete") 
       // delete first 
       fetch(actionid, { 
-        method: 'DELETE'      // Dont need a body for the delete 
+        method: 'DELETE' 
       }).then((resp) => { 
         return resp.json(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
