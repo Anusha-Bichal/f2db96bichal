@@ -1,23 +1,63 @@
-extends layout
+extends layout 
+block content 
+  h1=title 
+  -let items = results 
+  button.btn( class="btn-secondary ml-1",id="create" onclick= `dispatch(\"/fish/create")` ) Create
+  div(class="container-fluid")
+  div(class="row m-1")
+    each item in items
+      - let destination = `dispatch(\"/fish/update?id=${item._id}\")`
+      div(class="row-sm-2", class="m-1") Item #{item.fish_name}(#{item.fish_type}) is #{item.fish_size}
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
 
-block content
-  div(class='container')
-        h1(style="text-align: center; color: #863A6G")= title
-        - var results = results
-        div(class="container-fluid" style="text-align: center;")  
-            div.row 
-                each item, index in results
-                    div(class="row m-1")
-                        div(class='card', style='width: 17rem;')
-                            div(class='card-body')
-                                - let destination = `dispatch(\"/fish/update?id=${item._id}\")`
-                                div(class='card-text', onclick=`buy(${index})`) Fish Name: #{item["fish_name"]}  <br> Fish type: #{item["fish_type"]} <br> Fish size: #{item["fish_size"]}
-                                 button.btn(class="btn btn-primary btn-sm ml-3", style="margin: 5px; width: 130px;", onclick= destination) Update  
   script.
-    function buy(index){
-        alert("you purchased item "+(index+1))
-        }
-    function dispatch(path) {
-            window.location.href = path;
+    function dispatch(path)
+      {
+        window.location.href=path
       }
-      
+  button.btn( class="btn-success ml-1", onclick= `click(\"/fish/create\")` ) Create a new Item
+  table(class="table table-stripped table-bordered")
+        thead(style="background-color:pink;color:white") 
+           tr
+               td Item ID
+               td Item fish_name
+               td Item fish_type
+               td Item fish_size
+               td Update
+               td Details
+               td Delete
+           tbody
+            
+           each item in items
+                tr
+                    td #{item._id}
+                    td #{item.fish_name}
+                    td #{item.fish_type}
+                    td #{item.fish_size}
+                    td 
+                      button.btn( class="btn-warning ml-1", onclick= `dispatch(\"/fish/update?id=${item._id}\")` ) Update
+                    td 
+                      button.btn( class="btn-warning ml-1", onclick= `dispatch(\"/fish/detail?id=${item._id}\")` ) Details
+                    td 
+                      button.btn( class="btn-warning ml-1", onclick= `dispatch(\"/fish/delete?id=${item._id}\")` ) Delete 
+                script. 
+                  function click(path){ 
+                    window.location.href=path 
+                  } 
+
+  - let num=[{fish_name:"nemo",fish_type:"small",fish_size:5},{fish_name:"apollo",fish_type:"medium",fish_size:15},{fish_name:"whale",fish_type:"large",fish_size:25}]
+  div(class="container-fluid")
+  div(class="row")
+    each fish,index in num 
+      table(style='width:100%')
+          tr 
+              div(class="col-sm-2" onclick=`buy(${index})`) #{fish.fish_name}
+              div(class="col-sm-2" onclick=`buy(${index})`) #{fish.fish_type}
+              div(class="col-sm-2" onclick=`buy(${index})`) #{fish.fish_size}
+
+    script.
+
+      function buy(itemNo)
+      {
+        alert(`Your destination ${itemNo+1}`)
+      }
